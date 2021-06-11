@@ -15,7 +15,7 @@ struct Nodo
 	bool nulo;
 };
 
-//Heuristica
+//Heuristica 
 int heuristica(const Nodo &actual){
 
 	int x, y;
