@@ -1032,7 +1032,7 @@ void escritura(int numero, string solucion){
 		archivo << solucion;
 		archivo.close();
 		
-		cout << "\nSolución encontrada y guardada en archivo\n";
+		cout << "\nSolución encontrada y guardada en:  " << nombre <<"\n";
 	}
 	
 	else cout << "Error al escribir solución al archivo";
