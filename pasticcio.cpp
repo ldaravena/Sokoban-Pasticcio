@@ -100,712 +100,712 @@ Nodo exploracion(const Nodo &actual, int x, int y, char direccion){
 	switch(direccion){
 
 		case 'N'://Norte
-		entidad = actual.estado[y-1][x];
+			entidad = actual.estado[y-1][x];
 
-		switch(entidad){
+			switch(entidad){
 
-			case '$':
+				case '$':
 
-			estadoSiguiente = actual.estado;
+				estadoSiguiente = actual.estado;
 
-			estadoSiguiente[y-1][x] = '@';
+				estadoSiguiente[y-1][x] = '@';
 
-			if(actual.estado[y][x] == '@'){
+				if(actual.estado[y][x] == '@'){
 
-				estadoSiguiente[y][x] = ' ';
+					estadoSiguiente[y][x] = ' ';
 
-			}else{
+				}else{
 
-				estadoSiguiente[y][x] = '.';
+					estadoSiguiente[y][x] = '.';
 
-			}
-			destinoCaja = estadoSiguiente[y-2][x];
+				}
+				destinoCaja = estadoSiguiente[y-2][x];
 
-			if (destinoCaja == '#'){
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y-2][x] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y-2][x] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("U\n");
+
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '*':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y-1][x] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				destinoCaja = estadoSiguiente[y-2][x];
+
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y-2][x] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y-2][x] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("U\n");
+
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '.':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y-1][x] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("U\n");
+
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case ' ':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y-1][x] = '@';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("U\n");
+
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '#':
+				break;			
+
+				default:
+
 				break;
 			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y-2][x] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y-2][x] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("U\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
 
 			break;
-
-			case '*':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y-1][x] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			destinoCaja = estadoSiguiente[y-2][x];
-
-			if (destinoCaja == '#'){
-				break;
-			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y-2][x] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y-2][x] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("U\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-
-			case '.':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y-1][x] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("U\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case ' ':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y-1][x] = '@';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("U\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case '#':
-			break;			
-
-			default:
-			
-			break;
-		}
-
-		break;
 
 		case 'S'://Sur
-		entidad = actual.estado[y+1][x];
+			entidad = actual.estado[y+1][x];
 
-		switch(entidad){
+			switch(entidad){
 
-			case '$':
+				case '$':
 
-			estadoSiguiente = actual.estado;
+				estadoSiguiente = actual.estado;
 
-			estadoSiguiente[y+1][x] = '@';
+				estadoSiguiente[y+1][x] = '@';
 
-			if(actual.estado[y][x] == '@'){
+				if(actual.estado[y][x] == '@'){
 
-				estadoSiguiente[y][x] = ' ';
+					estadoSiguiente[y][x] = ' ';
 
-			}else{
+				}else{
 
-				estadoSiguiente[y][x] = '.';
+					estadoSiguiente[y][x] = '.';
 
-			}
-			destinoCaja = estadoSiguiente[y+2][x];
+				}
+				destinoCaja = estadoSiguiente[y+2][x];
 
-			if (destinoCaja == '#'){
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y+2][x] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y+2][x] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("D\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '*':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y+1][x] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				destinoCaja = estadoSiguiente[y+2][x];
+
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y+2][x] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y+2][x] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("D\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '.':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y+1][x] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("D\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+				
+				case ' ':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y+1][x] = '@';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("D\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+				
+				case '#':
+				break;			
+
+				default:
+				
 				break;
 			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y+2][x] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y+2][x] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("D\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
 
 			break;
-
-			case '*':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y+1][x] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			destinoCaja = estadoSiguiente[y+2][x];
-
-			if (destinoCaja == '#'){
-				break;
-			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y+2][x] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y+2][x] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("D\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-
-			case '.':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y+1][x] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("D\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case ' ':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y+1][x] = '@';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("D\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case '#':
-			break;			
-
-			default:
-			
-			break;
-		}
-
-		break;
 
 		case 'E'://Este
-		entidad = actual.estado[y][x+1];
+			entidad = actual.estado[y][x+1];
 
-		switch(entidad){
+			switch(entidad){
 
-			case '$':
+				case '$':
 
-			estadoSiguiente = actual.estado;
+				estadoSiguiente = actual.estado;
 
-			estadoSiguiente[y][x+1] = '@';
+				estadoSiguiente[y][x+1] = '@';
 
-			if(actual.estado[y][x] == '@'){
+				if(actual.estado[y][x] == '@'){
 
-				estadoSiguiente[y][x] = ' ';
+					estadoSiguiente[y][x] = ' ';
 
-			}else{
+				}else{
 
-				estadoSiguiente[y][x] = '.';
+					estadoSiguiente[y][x] = '.';
 
-			}
-			destinoCaja = estadoSiguiente[y][x+2];
+				}
+				destinoCaja = estadoSiguiente[y][x+2];
 
-			if (destinoCaja == '#'){
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y][x+2] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y][x+2] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("R\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '*':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y][x+1] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				destinoCaja = estadoSiguiente[y][x+2];
+
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y][x+2] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y][x+2] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("R\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '.':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y][x+1] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("R\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+				
+				case ' ':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y][x+1] = '@';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("R\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+				
+				case '#':
+				break;			
+
+				default:
+				
 				break;
 			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y][x+2] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y][x+2] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("R\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
 
 			break;
-
-			case '*':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y][x+1] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			destinoCaja = estadoSiguiente[y][x+2];
-
-			if (destinoCaja == '#'){
-				break;
-			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y][x+2] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y][x+2] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("R\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-
-			case '.':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y][x+1] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("R\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case ' ':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y][x+1] = '@';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("R\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case '#':
-			break;			
-
-			default:
-			
-			break;
-		}
-
-		break;
 		
 		case 'O'://Oeste
-		entidad = actual.estado[y][x-1];
+			entidad = actual.estado[y][x-1];
 
-		switch(entidad){
+			switch(entidad){
 
-			case '$':
+				case '$':
 
-			estadoSiguiente = actual.estado;
+				estadoSiguiente = actual.estado;
 
-			estadoSiguiente[y][x-1] = '@';
+				estadoSiguiente[y][x-1] = '@';
 
-			if(actual.estado[y][x] == '@'){
+				if(actual.estado[y][x] == '@'){
 
-				estadoSiguiente[y][x] = ' ';
+					estadoSiguiente[y][x] = ' ';
 
-			}else{
+				}else{
 
-				estadoSiguiente[y][x] = '.';
+					estadoSiguiente[y][x] = '.';
 
-			}
-			destinoCaja = estadoSiguiente[y][x-2];
+				}
+				destinoCaja = estadoSiguiente[y][x-2];
 
-			if (destinoCaja == '#'){
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y][x-2] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y][x-2] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("L\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '*':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y][x-1] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				destinoCaja = estadoSiguiente[y][x-2];
+
+				if (destinoCaja == '#'){
+					break;
+				}
+				else if (destinoCaja == '$'){
+					break;
+				}
+				else if (destinoCaja == '*'){
+					break;
+				}
+				else if (destinoCaja == ' '){
+					estadoSiguiente[y][x-2] = '$';
+				}
+				else if (destinoCaja == '.'){
+					estadoSiguiente[y][x-2] = '*';
+				}
+				else{
+					break;
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("L\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+
+				case '.':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y][x-1] = '+';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("L\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+				
+				case ' ':
+
+				estadoSiguiente = actual.estado;
+
+				estadoSiguiente[y][x-1] = '@';
+
+				if(actual.estado[y][x] == '@'){
+
+					estadoSiguiente[y][x] = ' ';
+
+				}else{
+
+					estadoSiguiente[y][x] = '.';
+
+				}
+
+				nuevoNodo = actual;
+
+				nuevoNodo.movimientos.append("L\n");
+				
+				nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
+				nuevoNodo.valorH = heuristica(nuevoNodo);			
+				nuevoNodo.valorH += nuevoNodo.costoTotal;	
+				nuevoNodo.estado = estadoSiguiente;
+				nuevoNodo.nulo = false;
+
+				return nuevoNodo;
+
+				break;
+				
+				case '#':
+				break;			
+
+				default:
+				
 				break;
 			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y][x-2] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y][x-2] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("L\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
 
 			break;
-
-			case '*':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y][x-1] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			destinoCaja = estadoSiguiente[y][x-2];
-
-			if (destinoCaja == '#'){
-				break;
-			}
-			else if (destinoCaja == '$'){
-				break;
-			}
-			else if (destinoCaja == '*'){
-				break;
-			}
-			else if (destinoCaja == ' '){
-				estadoSiguiente[y][x-2] = '$';
-			}
-			else if (destinoCaja == '.'){
-				estadoSiguiente[y][x-2] = '*';
-			}
-			else{
-				break;
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("L\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-
-			case '.':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y][x-1] = '+';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("L\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case ' ':
-
-			estadoSiguiente = actual.estado;
-
-			estadoSiguiente[y][x-1] = '@';
-
-			if(actual.estado[y][x] == '@'){
-
-				estadoSiguiente[y][x] = ' ';
-
-			}else{
-
-				estadoSiguiente[y][x] = '.';
-
-			}
-
-			nuevoNodo = actual;
-
-			nuevoNodo.movimientos.append("L\n");
-			
-			nuevoNodo.costoTotal += COSTO_MOVIMIENTO;			
-			nuevoNodo.valorH = heuristica(nuevoNodo);			
-			nuevoNodo.valorH += nuevoNodo.costoTotal;	
-			nuevoNodo.estado = estadoSiguiente;
-			nuevoNodo.nulo = false;
-
-			return nuevoNodo;
-
-			break;
-			
-			case '#':
-			break;			
-
-			default:
-			
-			break;
-		}
-
-		break;
 
 		default:// O este otro xd
 		
-		break;	
+			break;	
 	}
 
 	return nuevoNodo;
