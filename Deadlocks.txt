@@ -1,0 +1,12 @@
+Deadlocks sokoban:
+
+Hay 3 deadlocks facilmente identificables{
+	
+	1.- caja en una esquina
+
+	2.- caja en una pared cuyos extremos son esquinas
+
+	3.- 2 o mas cajas juntas en una misma pared
+	
+}
+
