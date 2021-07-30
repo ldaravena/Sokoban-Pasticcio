@@ -18,10 +18,38 @@ busqueda posiciones deadlocks{
 	
 	1.- marcar esquinas (m1)
 
-	2.- marcar paredes que tengan esquinas en ambos extremos (m2)
+	2.- marcar paredes que tengan esquinas en ambos extremos (m2){
+
+
+
+	}
 
 	3.- almacenar todos los estados posibles del mapa donde 2 cajas esten juntas en una pared
 
 }
 
-//Comentando para probar git desde mi computador
+notacion levels{
+	
+	#: pared
+	$: caja
+	 : espacio
+	@: Heroe
+	.: meta
+	
+	*: caja en meta
+	+: Heroe en meta
+
+	e: esquina
+	-: caja en esquina
+	E: Heroe en esquina
+
+	d: pared deadlock
+	~: caja en pared deadlock
+	D: Heroe en pared deadlock 
+
+
+}
+
+
+
+

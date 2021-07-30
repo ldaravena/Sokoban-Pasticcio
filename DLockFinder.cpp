@@ -927,6 +927,222 @@ vector<vector<char>> esquinar (vector<vector<char>> level){
 	return level;
 }
 
+vector<vector<char>> paredear (vector<vector<char>> level){
+
+	int n = level.size(); //número de filas del nivel
+
+	int m, l; //número de columna
+
+	bool izquierda, derecha, arriba, abajo;
+
+	for(int i=0; i<n; i++){
+
+		m = level.at(i).size();
+
+		for(int j = 0; j < m; j++){
+
+			if(level[i][j] == 'e'){
+
+				derecha = false;
+				abajo = false;
+				arriba = false;
+				izquierda = false;
+
+				//Si se encuentra esquina con pared arriba e izquierda
+				if(i-1 >= 0 && level[i-1][j] == '#'){
+
+					if(j-1 >= 0 && level[i][j-1] == '#'){
+
+						//revisa la pared hacia la derecha
+						for(int k = j+1; k < m; k++){
+
+							if(level[i-1][k] != '#'){
+
+								break;
+
+							}
+
+							if(level[i][k] == 'e'){
+
+								derecha = true;
+								break;
+
+							}
+
+						}
+
+						//revisa la pared hacia abajo
+						for(int k = i+1; k < n; k++){
+
+							if(level[k][j-1] != '#'){
+
+								break;
+
+							}
+
+							if(level[k][j] == 'e'){
+
+								abajo = true;
+								break;
+
+							}
+
+						}
+
+						//Si se encontro 'e' hacia la derecha
+						if(derecha){
+
+							l = j+1;
+
+							while(l < m && level[i][l] != 'e'){
+
+								if(level[i][l] == ' '){
+
+									level[i][l] = 'd';
+
+								}
+								else if(level[i][l] == '@'){
+
+									level[i][l] = 'D';
+
+								}
+
+								l++;
+
+							}
+
+						}
+
+						//Si se encontro 'e' hacia abajo
+						if(abajo){
+
+							l = i+1;
+
+							while(l < n && level[l][j] != 'e'){
+
+								if(level[l][j] == ' '){
+
+									level[l][j] = 'd';
+
+								}
+								else if(level[l][j] == '@'){
+
+									level[l][j] = 'D';
+
+								}
+
+								l++;
+
+							}
+
+						}
+
+					}
+
+				}
+
+				//Si se encuentra esquina con pared abajo y derecha				
+				if(i+1 < n && level[i+1][j] == '#'){
+
+					if(j+1 < m && level[i][j+1] == '#'){
+
+						//revisa la pared hacia la izquierda
+						for(int k = j-1; k >= 0; k--){
+
+							if(level[i+1][k] != '#'){
+
+								break;
+
+							}
+
+							if(level[i][k] == 'e'){
+
+								izquierda = true;
+								break;
+
+							}
+
+						}
+
+						//revisa la pared hacia arriba
+						for(int k = i-1; k >= 0; k--){
+
+							if(level[k][j+1] != '#'){
+
+								break;
+
+							}
+
+							if(level[k][j] == 'e'){
+
+								arriba = true;
+								break;
+
+							}
+
+						}
+
+						//Si se encontro 'e' hacia la izquierda
+						if(izquierda){
+
+							l = j-1;
+
+							while(l >= 0 && level[i][l] != 'e'){
+
+								if(level[i][l] == ' '){
+
+									level[i][l] = 'd';
+
+								}
+								else if(level[i][l] == '@'){
+
+									level[i][l] = 'D';
+
+								}
+
+								l--;
+
+							}
+
+						}
+
+						//Si se encontro 'e' hacia arriba
+						if(arriba){
+
+							l = i-1;
+
+							while(l >= 0 && level[l][j] != 'e'){
+
+								if(level[l][j] == ' '){
+
+									level[l][j] = 'd';
+
+								}
+								else if(level[l][j] == '@'){
+
+									level[l][j] = 'D';
+
+								}
+
+								l--;
+
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+
+		}	
+
+	}
+	return level;
+
+}
+
 int main(){
 
 
@@ -947,6 +1163,8 @@ int main(){
 	level = lectura(numero);
 
 	esquinas = esquinar(level);
+
+	esquinas = paredear(esquinas);
 
 	for(int i=0; i<esquinas.size(); i++){
 
