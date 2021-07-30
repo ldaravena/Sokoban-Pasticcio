@@ -1339,7 +1339,7 @@ queue<Nodo> crearPosiblesFuturos (const Nodo &actual){
 
 		for(int j = 0; j < actual.estado[i].size(); j++){
 
-			if(actual.estado[i][j] == '@' || actual.estado[i][j] == '+'){
+			if(actual.estado[i][j] == '@' || actual.estado[i][j] == '+' || actual.estado[i][j] == 'D' || actual.estado[i][j] == 'E'){
 
 				elArroba = actual.estado[i][j];
 				x = j;
@@ -1618,6 +1618,8 @@ vector<vector<char>> esquinar (vector<vector<char>> level){
 		}
 	}
 
+	cout << "fin esquinar\n";
+
 	return level;
 }
 
@@ -1857,6 +1859,9 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 		}	
 
 	}
+
+	cout << "fin paredear\n";
+
 	return level;
 
 }
