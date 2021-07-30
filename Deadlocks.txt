@@ -10,3 +10,17 @@ Hay 3 deadlocks facilmente identificables{
 	
 }
 
+
+
+
+
+busqueda posiciones deadlocks{
+	
+	1.- marcar esquinas (m1)
+
+	2.- marcar paredes que tengan esquinas en ambos extremos (m2)
+
+	3.- almacenar todos los estados posibles del mapa donde 2 cajas esten juntas en una pared
+
+}
+
