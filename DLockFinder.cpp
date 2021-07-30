@@ -6,6 +6,8 @@
 #include <vector>
 #include <queue>
 
+#include <bits/stdc++.h>
+
 using namespace std;
 
 
@@ -63,7 +65,7 @@ vector<vector<char>> lectura(int numero){
 
 }
 
-
+/*
 //Retorna Nodo con el siguiente estado dependiendo del movimiento a revisar.
 Nodo exploracion(const Nodo &actual, int x, int y, char direccion){
 
@@ -851,12 +853,85 @@ queue<Nodo> crearPosiblesFuturos (const Nodo &actual){
 
 	return movimientosValidos;
 }
+*/
 
+//Función para marcar las esquinas del nivel
+vector<vector<char>> esquinar (vector<vector<char>> level){
+
+	int n = level.size(); //número de filas del nivel
+
+	int m; //número de columna
+
+	for(int i=0; i<n; i++){
+
+		m = level.at(i).size();
+
+		for(int j=0; j<m; j++){
+
+			if(j-1>=0 && level[i][j-1] == '#'){
+
+				if(i-1>=0 && level[i-1][j] == '#'){
+
+					if(level[i][j] == ' '){
+
+						level[i][j] = 'e';
+					}
+					else if(level[i][j] == '@'){
+
+						level[i][j] = 'E';
+					}
+				}
+
+				if(i+1<n && level[i+1][j] == '#'){
+
+					if(level[i][j] == ' '){
+
+						level[i][j] = 'e';
+					}
+					else if(level[i][j] == '@'){
+
+						level[i][j] = 'E';
+					}
+				}
+			}
+
+			if(j+1<m && level[i][j+1] == '#'){
+
+				if(i-1>=0 && level[i-1][j] == '#'){
+
+					if(level[i][j] == ' '){
+
+						level[i][j] = 'e';
+					}
+					else if(level[i][j] == '@'){
+
+						level[i][j] = 'E';
+					}
+				}
+
+				if(i+1<n && level[i+1][j] == '#'){
+
+					if(level[i][j] == ' '){
+
+						level[i][j] = 'e';
+					}
+					else if(level[i][j] == '@'){
+
+						level[i][j] = 'E';
+					}
+				}
+			}
+		}
+	}
+
+	return level;
+}
 
 int main(){
 
 
 	vector<vector<char>> level;
+	vector<vector<char>> esquinas;
 	int numero;
 	
 	cout << "Ingrese el número del nivel (1-155): ";
@@ -870,6 +945,18 @@ int main(){
 	}
 	
 	level = lectura(numero);
+
+	esquinas = esquinar(level);
+
+	for(int i=0; i<esquinas.size(); i++){
+
+		for(int j=0; j<esquinas.at(i).size(); j++){
+
+			cout<<esquinas[i][j];
+		}
+
+		cout<<"\n";
+	}
 
 	return 0;
 }
