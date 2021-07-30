@@ -871,9 +871,7 @@ int main(){
 	
 	level = lectura(numero);
 
-
-
-
+	//Probando git
 
 	return 0;
 }
