@@ -31,7 +31,7 @@ int heuristica(const Nodo &actual){
 
 		for(int j = 0; j < actual.estado[i].size(); j++){
 
-			if (actual.estado[i][j] == '@'){
+			if (actual.estado[i][j] == '@' || actual.estado[i][j] == 'E' || actual.estado[i][j] == 'D'){
 
 				x = j;
 				y = i;
