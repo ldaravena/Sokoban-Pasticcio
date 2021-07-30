@@ -962,6 +962,12 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							}
 
+							if(level[i][k] == '*' || level[i][k] == '.'){
+
+								break;
+
+							}
+
 							if(level[i][k] == 'e'){
 
 								derecha = true;
@@ -975,6 +981,12 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 						for(int k = i+1; k < n; k++){
 
 							if(level[k][j-1] != '#'){
+
+								break;
+
+							}
+
+							if(level[k][j] == '*' || level[k][j] == '.'){
 
 								break;
 
@@ -1055,6 +1067,12 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							}
 
+							if(level[i][k] == '*' || level[i][k] == '.'){
+
+								break;
+
+							}
+
 							if(level[i][k] == 'e'){
 
 								izquierda = true;
@@ -1068,6 +1086,12 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 						for(int k = i-1; k >= 0; k--){
 
 							if(level[k][j+1] != '#'){
+
+								break;
+
+							}
+
+							if(level[k][j] == '*' || level[k][j] == '.'){
 
 								break;
 

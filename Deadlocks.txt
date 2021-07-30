@@ -40,11 +40,11 @@ notacion levels{
 	+: Heroe en meta
 
 	e: esquina
-	-: caja en esquina
+	-: caja en esquina*****
 	E: Heroe en esquina
 
 	d: pared deadlock
-	~: caja en pared deadlock
+	~: caja en pared deadlock*****
 	D: Heroe en pared deadlock 
 
 
