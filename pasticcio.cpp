@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 struct Nodo
 {	
 	vector<vector<char>> estado;//estado actual del nivel.
