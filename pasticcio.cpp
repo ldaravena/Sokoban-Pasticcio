@@ -506,7 +506,7 @@ queue<Nodo> crearPosiblesFuturos (const Nodo &actual){
 //Retorna verdadero o falso dependiendo de si se llego al estado objetivo o no.
 bool meta(Nodo &actual){
 
-	//Si encontramos un '.' o '+' entonces no se ha llegado al estado objetivo
+	//Si encontramos una caja '$' entonces no se ha llegado al estado objetivo
 	for(int i = 0; i < actual.estado.size(); i++){
 
 		for(int j = 0; j < actual.estado[i].size(); j++){
