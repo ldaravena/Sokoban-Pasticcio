@@ -50,6 +50,16 @@ notacion levels{
 
 }
 
+posible mejora en la heuristica{
+	
+	1.-Considerar la distancia entre las cajas y los deadlocks.
 
+}
+
+1.-{
+	
+	Para cada estado se calculan las distancias entre las cajas y sus respectivos deadlocks mas cercanos. 
+
+}
 
 

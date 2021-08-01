@@ -21,22 +21,41 @@ int heuristica(const Nodo &actual){
 	int x, y;
 	vector< pair<int, int> > cajas;
 	vector< pair<int, int> > metas;
-	int valor = 0;
+	vector< pair<int, int> > deadlocks;
+ 	int valor = 0;
 	int radioElArroba = 1000;
 
 	int disHorizontal;
 	int disVertical;
 
+	int sumaDistancias;
+	int minDead;
+
+
+	//Identifica posiciones de entidades
 	for(int i = 0; i < actual.estado.size(); i++){
 
 		for(int j = 0; j < actual.estado[i].size(); j++){
 
-			if (actual.estado[i][j] == '@' || actual.estado[i][j] == 'E' || actual.estado[i][j] == 'D'){
+			if (actual.estado[i][j] == '@' ){
 
 				x = j;
 				y = i;
 
-			}else if (actual.estado[i][j] == '+' ){
+			}else if (actual.estado[i][j] == 'E' || actual.estado[i][j] == 'D' ){
+
+				x = j;
+				y = i;
+				pair<int, int> aux(j,i);
+				deadlocks.push_back(aux);
+			
+			}else if (actual.estado[i][j] == 'e' || actual.estado[i][j] == 'd' ){
+
+				pair<int, int> aux(j,i);
+				deadlocks.push_back(aux);
+
+			}
+			else if (actual.estado[i][j] == '+' ){
 
 				x = j;
 				y = i;
@@ -60,6 +79,7 @@ int heuristica(const Nodo &actual){
 		}
 	}
 
+	//Distancia entre cajas y metas
 	for (int i = 0; i < cajas.size(); i++){
 
 		for (int j = 0; j < metas.size(); j++){
@@ -84,7 +104,31 @@ int heuristica(const Nodo &actual){
 			radioElArroba = (disVertical + disHorizontal);
 		}
 	}
+
 	valor += radioElArroba;
+
+	
+	//Distancias entre cajas y deadlocks
+	for (int i = 0; i < cajas.size(); i++){
+
+		minDead = abs(deadlocks[0].first - cajas[i].first) + abs(deadlocks[0].second - cajas[i].second);
+
+		for (int j = 1; j < deadlocks.size(); j++){
+
+			sumaDistancias = abs(deadlocks[j].first - cajas[i].first) + abs(deadlocks[j].second - cajas[i].second);
+
+			if(sumaDistancias < minDead){
+
+				minDead = sumaDistancias;
+
+			}
+
+		}
+
+		valor += minDead;
+	}
+	
+
 	return valor;
 }
 
