@@ -124,7 +124,7 @@ int heuristica(const Nodo &actual){
 
 		}
 
-		valor += minDead;
+		valor -= minDead;
 	}
 	
 
