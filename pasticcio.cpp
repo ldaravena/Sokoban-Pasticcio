@@ -487,7 +487,6 @@ queue<Nodo> crearPosiblesFuturos (Nodo &actual){
 
 	queue<Nodo> movimientosValidos;
 
-	vector< vector<char> > estadoSiguiente;
 	Nodo nuevoNodo;
 
 	char elArroba;
