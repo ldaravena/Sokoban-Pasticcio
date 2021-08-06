@@ -15,7 +15,7 @@ struct Nodo
 };
 
 //Heuristica
-int heuristica(const Nodo &actual){
+int heuristica(Nodo &actual){
 
 	int x, y;
 	vector< pair<int, int> > cajas;
@@ -132,7 +132,7 @@ int heuristica(const Nodo &actual){
 }
 
 //Retorna Nodo con el siguiente estado dependiendo del movimiento a revisar.
-Nodo exploracion(const Nodo &actual, int x, int y, char direccion){
+Nodo exploracion(Nodo &actual, int x, int y, char direccion){
 
 	Nodo nuevoNodo;
 	nuevoNodo.nulo = true;
@@ -483,7 +483,7 @@ Nodo exploracion(const Nodo &actual, int x, int y, char direccion){
 }	
 
 //Retorna una lista de estados futuros validos.
-queue<Nodo> crearPosiblesFuturos (const Nodo &actual){
+queue<Nodo> crearPosiblesFuturos (Nodo &actual){
 
 	queue<Nodo> movimientosValidos;
 
@@ -709,6 +709,7 @@ void escritura(int numero, string solucion){
 	else cout << "Error al escribir solución al archivo";
 }
 
+//Se marcan los deadlocks en las esquinas del nivel
 vector<vector<char>> esquinar (vector<vector<char>> level){
 
 	int n = level.size(); //número de filas del nivel
@@ -780,6 +781,7 @@ vector<vector<char>> esquinar (vector<vector<char>> level){
 	return level;
 }
 
+//Se marcan los deadlocks que existen entre las esquinas
 vector<vector<char>> paredear (vector<vector<char>> level){
 
 	int n = level.size(); //número de filas del nivel
@@ -794,7 +796,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 		for(int j = 0; j < m; j++){
 
-			if(level[i][j] == 'e'){
+			if(level[i][j] == 'e' || level[i][j] == 'E'){
 
 				derecha = false;
 				abajo = false;
@@ -821,7 +823,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							}
 
-							if(level[i][k] == 'e'){
+							if(level[i][k] == 'e' || level[i][k] == 'E'){
 
 								derecha = true;
 								break;
@@ -845,7 +847,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							}
 
-							if(level[k][j] == 'e'){
+							if(level[k][j] == 'e' || level[k][j] == 'E'){
 
 								abajo = true;
 								break;
@@ -859,7 +861,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							l = j+1;
 
-							while(l < m && level[i][l] != 'e'){
+							while(l < m && level[i][l] != 'e' && level[i][l] != 'E'){
 
 								if(level[i][l] == ' '){
 
@@ -883,7 +885,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							l = i+1;
 
-							while(l < n && level[l][j] != 'e'){
+							while(l < n && level[l][j] != 'e' && level[l][j] != 'E'){
 
 								if(level[l][j] == ' '){
 
@@ -926,7 +928,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							}
 
-							if(level[i][k] == 'e'){
+							if(level[i][k] == 'e' || level[i][k] == 'E'){
 
 								izquierda = true;
 								break;
@@ -950,7 +952,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							}
 
-							if(level[k][j] == 'e'){
+							if(level[k][j] == 'e' || level[k][j] == 'E'){
 
 								arriba = true;
 								break;
@@ -964,7 +966,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							l = j-1;
 
-							while(l >= 0 && level[i][l] != 'e'){
+							while(l >= 0 && level[i][l] != 'e' && level[i][l] != 'E'){
 
 								if(level[i][l] == ' '){
 
@@ -988,7 +990,7 @@ vector<vector<char>> paredear (vector<vector<char>> level){
 
 							l = i-1;
 
-							while(l >= 0 && level[l][j] != 'e'){
+							while(l >= 0 && level[l][j] != 'e' && level[l][j] != 'E'){
 
 								if(level[l][j] == ' '){
 
