@@ -56,10 +56,8 @@ D
 U
 U
 U
-U
 L
 L
-D
 L
 D
 D
@@ -90,8 +88,10 @@ U
 U
 U
 U
+U
 L
 L
+D
 L
 L
 U

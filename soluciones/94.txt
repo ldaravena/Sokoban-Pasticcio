@@ -5,8 +5,6 @@ R
 U
 R
 D
-D
-U
 L
 L
 L
@@ -55,6 +53,8 @@ U
 R
 U
 L
+L
+R
 U
 U
 L
@@ -73,8 +73,6 @@ R
 D
 D
 D
-L
-R
 R
 D
 D
